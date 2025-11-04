@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List Mahasiswa</title>
+    <style>
+        body { font-family: Arial; background: #f2f2f2; text-align: center; margin-top: 40px; }
+        form { margin-bottom: 20px; }
+        input[type="text"] { padding: 10px; width: 250px; }
+        button { padding: 10px 15px; margin-left: 5px; cursor: pointer; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: white; padding: 10px; margin: 5px auto; width: 300px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</head>
+<body>
+    <h1> kegiatan Mahasiswa</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Masukkan tugas kuliah anda " required>
+        <button type="submit">add</button>
+    </form>
+    <ul>
+        {% for t in tasks %}
+        <li>
+            {{ t }}
+            <a href="{{ url_for('delete', index=loop.index0) }}"><button>Hapus</button></a>
+        </li>
+        {% else %}
+        <li><i>maaf sementara belum ada tugas.</i></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
